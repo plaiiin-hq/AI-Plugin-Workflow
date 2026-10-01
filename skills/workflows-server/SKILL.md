@@ -60,6 +60,7 @@ which looks like success and is not. `wf` refuses such a path.
 | The tickets of a type | `GET /api/workspaces/<ws>/workflows/<type>` — add `?state=<id>` to narrow, `?archived=true` for archived ones |
 | Where is ticket X, or is there one about Y? | `GET /api/search?q=WF-12` or `?q=words+of+the+title` — every workspace at once. Search before filing, so the same thing is not filed twice |
 | One ticket with its history | `GET /api/workspaces/<ws>/workflows/<type>/<id>` → `{ instance, timeline, trail }` |
+| What does the project's architecture say? | `GET /api/workspaces/<ws>/docs` → each document's `path` and `title`; `GET …/docs/content?path=<path>` → its `markdown`. Read it before proposing a design that a document already settles |
 
 **Start with the views** when the question is "what is going on" rather than about one ticket —
 they are what people look at:
