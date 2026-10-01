@@ -58,6 +58,7 @@ which looks like success and is not. `wf` refuses such a path.
 | Which ticket types does a workspace have? | `GET /api/workspaces/<ws>/workflows/types` |
 | What are a type's fields, states and moves? | `GET /api/workspaces/<ws>/workflows/types/<type>` → `fields`, `nodes` (states), `edges` (moves: `from`, `to`) |
 | The tickets of a type | `GET /api/workspaces/<ws>/workflows/<type>` — add `?state=<id>` to narrow, `?archived=true` for archived ones |
+| Where is ticket X, or is there one about Y? | `GET /api/search?q=WF-12` or `?q=words+of+the+title` — every workspace at once. Search before filing, so the same thing is not filed twice |
 | One ticket with its history | `GET /api/workspaces/<ws>/workflows/<type>/<id>` → `{ instance, timeline, trail }` |
 
 **Start with the views** when the question is "what is going on" rather than about one ticket —

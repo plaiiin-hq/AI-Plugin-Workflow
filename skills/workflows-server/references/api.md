@@ -11,6 +11,7 @@ Everything is under `/api/`, takes `X-API-Key`, and speaks JSON. `<ws>` is a wor
 | `GET /api/me` | `email`, `displayName`, `admin` |
 | `GET /api/workspaces` | each workspace: `id`, `name`, `access`, `available`, optional `group`, `icon` |
 | `GET /api/workspaces/<ws>/icon` | the workspace's app icon (PNG), when it has one |
+| `GET /api/search?q=…` | find a ticket by id or by words of its title, across every workspace you may read: each hit has `workspace`, `type`, `id`, `title`, `state`. An exact id first; at most 20 |
 | `GET /api/me/keys` · `POST /api/me/keys` · `DELETE /api/me/keys/<id>` | your API keys — **signed in only; a key gets `403`** |
 
 ## The workflow surface
