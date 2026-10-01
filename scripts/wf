@@ -1,0 +1,46 @@
+#!/bin/sh
+# wf — one call to a Workflows server, as you.
+#
+#   wf GET  /api/workspaces
+#   wf GET  /api/workspaces/<ws>/workflows/task
+#   wf POST /api/workspaces/<ws>/workflows/task '{"fields":{"title":"…"}}'
+#
+# Reads WORKFLOWS_URL and WORKFLOWS_API_KEY from the environment, else from
+# ~/.plaiiin/workflows/env. Prints the response body; the HTTP status goes to stderr, and the
+# exit code is 0 only for a 2xx — so a refusal is never mistaken for an answer.
+set -eu
+
+ENV_FILE="${WORKFLOWS_ENV:-$HOME/.plaiiin/workflows/env}"
+if [ -z "${WORKFLOWS_URL:-}" ] || [ -z "${WORKFLOWS_API_KEY:-}" ]; then
+  if [ -f "$ENV_FILE" ]; then
+    # shellcheck disable=SC1090
+    set -a; . "$ENV_FILE"; set +a
+  fi
+fi
+if [ -z "${WORKFLOWS_URL:-}" ] || [ -z "${WORKFLOWS_API_KEY:-}" ]; then
+  echo "wf: no server configured — put WORKFLOWS_URL and WORKFLOWS_API_KEY in $ENV_FILE (see docs/setup.md)" >&2
+  exit 2
+fi
+if [ $# -lt 2 ]; then
+  echo "usage: wf <GET|POST|PATCH|PUT|DELETE> <path starting with /api/> [json body]" >&2
+  exit 2
+fi
+
+METHOD="$1"; REQUEST_PATH="$2"; BODY="${3:-}"
+case "$REQUEST_PATH" in
+  /api/*) ;;
+  *) echo "wf: the path must start with /api/ — anything else is the web app, and answers with a page" >&2; exit 2 ;;
+esac
+
+OUT="$(mktemp)"; trap 'rm -f "$OUT"' EXIT
+if [ -n "$BODY" ]; then
+  CODE="$(curl -sS -o "$OUT" -w '%{http_code}' -X "$METHOD" -H "X-API-Key: $WORKFLOWS_API_KEY" \
+    -H 'Content-Type: application/json' --data "$BODY" "${WORKFLOWS_URL%/}$REQUEST_PATH")"
+else
+  CODE="$(curl -sS -o "$OUT" -w '%{http_code}' -X "$METHOD" -H "X-API-Key: $WORKFLOWS_API_KEY" \
+    "${WORKFLOWS_URL%/}$REQUEST_PATH")"
+fi
+cat "$OUT"
+[ -s "$OUT" ] && echo
+echo "HTTP $CODE" >&2
+case "$CODE" in 2*) exit 0 ;; *) exit 1 ;; esac
