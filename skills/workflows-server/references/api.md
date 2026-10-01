@@ -51,7 +51,8 @@ Only leaves are counted, so a parent's numbers are those of the work beneath it.
 
 A collection answers `mode` (`list` or `board`), `sections` (one per query: `label`, `type`,
 `items`) and `lanes` (`id`, `label`, `states`). An item: `id`, `type`, `title`, `state`,
-`stateLabel`, `updatedAt`, and `parent` as `<type>/<id>` when it links one.
+`stateLabel`, `updatedAt`, `version` (what a move or a field change must name), and `parent` as
+`<type>/<id>` when it links one.
 
 ## People and integrity
 
