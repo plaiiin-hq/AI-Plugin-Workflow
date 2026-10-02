@@ -20,6 +20,10 @@ workspace with integrity on, signed with this Mac's device key.
   the repository root.
 - The app may only use folders it was granted. `list_folder_grants` shows them;
   `grant_folder_access` / `add_repo` ask for more — the first time, the person confirms a dialog.
+- **A repository that is not on this Mac yet:** `clone_repo` (`url`, `into` — a parent folder inside a
+  granted one —, `workspace`) clones it whole and adds it. The app signs in itself: an HTTPS host's
+  user name and token from its keychain (a dialog asks the person once), ssh through the person's
+  granted `~/.ssh`. `status: "needs"` says what the person must do first.
 
 ## Reading
 
