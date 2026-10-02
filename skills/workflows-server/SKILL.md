@@ -73,6 +73,19 @@ they are what people look at:
 
 A view holds only what the key's owner may read, so its numbers count that, not everything.
 
+## The repository itself
+
+A server also serves the git repository behind its workspaces, so a checkout needs no account on
+the git host:
+
+```bash
+git clone https://<server>/api/git/<repository>     # user name: anything · password: the API key
+```
+
+`GET /api/workspaces` gives each workspace's `repository` and its `root` folder inside it. Fetch
+needs read access, push needs write. Tickets are still changed through the API, not by editing
+files in that clone and pushing them.
+
 ## Changing things
 
 Every write names the `version` you read; the server refuses a stale one, so you never overwrite
