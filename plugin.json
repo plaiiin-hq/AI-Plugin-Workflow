@@ -1,0 +1,14 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "plaiiin-workflows",
+  "version": "1.0.0",
+  "description": "Work with plaiiin Workflows tickets through the Mac app or a Workflows server.",
+  "author": {
+    "name": "Plaiiin",
+    "url": "https://plaiiin.com"
+  },
+  "homepage": "https://github.com/plaiiin-hq/plaiiin-workflows-plugin",
+  "repository": "https://github.com/plaiiin-hq/plaiiin-workflows-plugin",
+  "license": "Apache-2.0",
+  "keywords": ["tickets", "workflows", "project-management"]
+}

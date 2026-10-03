@@ -20,6 +20,18 @@ the server commits in the name of the key's owner. Neither skill edits ticket fi
 
 Then see [docs/setup.md](docs/setup.md).
 
+## Codex
+
+This repository is also a portable Codex plugin. Add it as a marketplace, then install
+`plaiiin-workflows` from that source:
+
+```
+codex plugin marketplace add plaiiin-hq/plaiiin-workflows-plugin
+codex plugin add plaiiin-workflows@plaiiin-workflows
+```
+
+Codex uses the same skills and local Workflows MCP endpoint as Claude Code.
+
 ## What is in here
 
 - `skills/workflows-app/` — driving the app over its local MCP server (registered by this plugin

@@ -1,0 +1,20 @@
+{
+  "name": "plaiiin-workflows",
+  "interface": {
+    "displayName": "Plaiiin plugins"
+  },
+  "plugins": [
+    {
+      "name": "plaiiin-workflows",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
