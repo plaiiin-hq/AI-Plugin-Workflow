@@ -97,6 +97,8 @@ somebody else's change unseen.
 | Change fields | `PATCH …/workflows/<type>/<id>/fields` | `{"fields": {…}, "version": <n>}` |
 | Move it to another state | `POST …/workflows/<type>/<id>/transitions` | `{"to": "<state id>", "version": <n>}` |
 | Comment | `POST …/workflows/<type>/<id>/comments` → `204` | `{"text": "…"}` |
+| Add a checklist item | `POST …/workflows/<type>/<id>/checklist/<field>` | `{"description": "…"}` — numbered by the server |
+| Tick a checklist item | `POST …/workflows/<type>/<id>/checklist/<field>/<item>` | `{"done": true, "commit": "…"}` — no version needed |
 | Archive / restore | `DELETE …/workflows/<type>/<id>` → `204` / `POST …/<id>/unarchive` | — |
 
 Before a write:
@@ -106,7 +108,8 @@ Before a write:
    along an edge `from` the ticket's current state.
 2. **Read the ticket for its `version`**, then write with it. On `409` re-read and decide again;
    do not just retry with the new number.
-3. **Write values the way the type stores them:** a choice is its option's `id`; a link to another
+3. **A checklist field** (`format.display: "checklist"`, e.g. a task's `checklist` and `dod`) holds items `{id, description, done, commit?}`. Add and tick items one at a time with the checklist calls, so nobody overwrites another's items.
+4. **Write values the way the type stores them:** a choice is its option's `id`; a link to another
    ticket (a task's `epic`) is that ticket's `id`; "several of a set" is a list of option ids.
 
 ## Reading a refusal
