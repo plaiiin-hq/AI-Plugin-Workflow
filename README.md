@@ -14,7 +14,7 @@ the server commits in the name of the key's owner. Neither skill edits ticket fi
 ## Install
 
 ```
-/plugin marketplace add plaiiin-hq/plaiiin-workflows-plugin
+/plugin marketplace add plaiiin-hq/AI-Plugin-Workflow
 /plugin install plaiiin-workflows@plaiiin-workflows
 ```
 
@@ -26,7 +26,7 @@ This repository is also a portable Codex plugin. Add it as a marketplace, then i
 `plaiiin-workflows` from that source:
 
 ```
-codex plugin marketplace add plaiiin-hq/plaiiin-workflows-plugin
+codex plugin marketplace add plaiiin-hq/AI-Plugin-Workflow
 codex plugin add plaiiin-workflows@plaiiin-workflows
 ```
 

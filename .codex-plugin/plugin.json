@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Work with plaiiin Workflows tickets through the Mac app or a Workflows server.",
   "author": { "name": "Plaiiin" },
-  "homepage": "https://github.com/plaiiin-hq/plaiiin-workflows-plugin",
-  "repository": "https://github.com/plaiiin-hq/plaiiin-workflows-plugin",
+  "homepage": "https://github.com/plaiiin-hq/AI-Plugin-Workflow",
+  "repository": "https://github.com/plaiiin-hq/AI-Plugin-Workflow",
   "license": "Apache-2.0",
   "keywords": ["tickets", "workflows", "project-management"],
   "skills": "./skills/",
@@ -16,6 +16,6 @@
     "developerName": "Plaiiin",
     "category": "Productivity",
     "capabilities": ["Read", "Write"],
-    "websiteURL": "https://github.com/plaiiin-hq/plaiiin-workflows-plugin"
+    "websiteURL": "https://github.com/plaiiin-hq/AI-Plugin-Workflow"
   }
 }

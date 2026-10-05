@@ -7,8 +7,8 @@
     "name": "Plaiiin",
     "url": "https://plaiiin.com"
   },
-  "homepage": "https://github.com/plaiiin-hq/plaiiin-workflows-plugin",
-  "repository": "https://github.com/plaiiin-hq/plaiiin-workflows-plugin",
+  "homepage": "https://github.com/plaiiin-hq/AI-Plugin-Workflow",
+  "repository": "https://github.com/plaiiin-hq/AI-Plugin-Workflow",
   "license": "Apache-2.0",
   "keywords": ["tickets", "workflows", "project-management"]
 }
