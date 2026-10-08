@@ -1,14 +1,14 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "plaiiin-workflows",
-  "description": "plaiiin Workflows for Claude Code — tickets as files in git, worked through the Mac app's local MCP or a Workflows server's REST API.",
+  "description": "plaiiin Workflow for Claude Code — tickets as files in git, worked through the Mac app's local MCP or a Workflow server's REST API.",
   "owner": {
     "name": "Plaiiin"
   },
   "plugins": [
     {
       "name": "plaiiin-workflows",
-      "description": "Read, create, move and comment on Workflows tickets — on this Mac through the app, or anywhere through a server with an API key.",
+      "description": "Read, create, move and comment on Workflow tickets — on this Mac through the app, or anywhere through a server with an API key.",
       "author": {
         "name": "Plaiiin"
       },

@@ -1,7 +1,7 @@
 {
   "name": "plaiiin-workflows",
   "version": "1.0.0",
-  "description": "Work with plaiiin Workflows tickets through the Mac app or a Workflows server.",
+  "description": "Work with plaiiin Workflow tickets through the Mac app or a Workflow server.",
   "author": { "name": "Plaiiin" },
   "homepage": "https://github.com/plaiiin-hq/AI-Plugin-Workflow",
   "repository": "https://github.com/plaiiin-hq/AI-Plugin-Workflow",
@@ -10,9 +10,9 @@
   "skills": "./skills/",
   "mcpServers": "./.mcp.json",
   "interface": {
-    "displayName": "plaiiin Workflows",
-    "shortDescription": "Read and change Workflows tickets",
-    "longDescription": "Work with tickets through the local Workflows app or a Workflows server with an API key.",
+    "displayName": "plaiiin Workflow",
+    "shortDescription": "Read and change Workflow tickets",
+    "longDescription": "Work with tickets through the local Workflow app or a Workflow server with an API key.",
     "developerName": "Plaiiin",
     "category": "Productivity",
     "capabilities": ["Read", "Write"],

@@ -1,6 +1,6 @@
 {
   "name": "plaiiin-workflows",
-  "description": "Work with plaiiin Workflows from Claude: tickets, their states and the views over them, kept as files in a git repository. `workflows-app` drives the Workflows app on this Mac over its local MCP — read, create, move and comment on tickets in a repository you have checked out. `workflows-server` drives a Workflows server over its REST API with an API key — the same tickets from anywhere, no checkout needed. Both write changes the workspace's history can explain.",
+  "description": "Work with plaiiin Workflow from Claude: tickets, their states and the views over them, kept as files in a git repository. `workflows-app` drives the Workflow app on this Mac over its local MCP — read, create, move and comment on tickets in a repository you have checked out. `workflows-server` drives a Workflow server over its REST API with an API key — the same tickets from anywhere, no checkout needed. Both write changes the workspace's history can explain.",
   "author": {
     "name": "Plaiiin"
   },

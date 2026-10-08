@@ -2,16 +2,16 @@
 
 The plugin has two halves. Use either or both.
 
-## The Workflows app on this Mac
+## The Workflow app on this Mac
 
 Nothing to configure: the plugin registers the app's local MCP server
-(`http://127.0.0.1:27184/mcp`). It answers while the app is running. Open Workflows, then ask
+(`http://127.0.0.1:27184/mcp`). It answers while the app is running. Open Workflow, then ask
 Claude to `describe_app_state`.
 
 The app only uses folders it was granted. The first time Claude adds a repository, the app shows
 a dialog — confirm it once for the repository root and every tracking folder below it is covered.
 
-## A Workflows server
+## A Workflow server
 
 1. Sign in to the server's web app. Account menu → **API keys** → name the key for what will use
    it ("Claude on my Mac") → **Create key**. It is shown once.

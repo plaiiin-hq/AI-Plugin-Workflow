@@ -1,11 +1,11 @@
 ---
 name: workflows-app
-description: Use when working with plaiiin Workflows tickets in a repository checked out on THIS Mac, through the Workflows app's local MCP server (tools named `mcp__workflows__*` or `mcp__plugin_plaiiin-workflows_workflows__*`) — listing and reading tickets, creating one, moving it between states, patching fields, commenting, editing a type's fields, or syncing a signed workspace. Covers that the app must be running, that every tool takes the tracking folder as `workflow_root`, which tools change the repository and which only move the app's selection, and why ticket files are never edited by hand in a signed workspace. With no checkout or no app — only a server URL and a key — use `workflows-server` instead.
+description: Use when working with plaiiin Workflow tickets in a repository checked out on THIS Mac, through the Workflow app's local MCP server (tools named `mcp__workflows__*` or `mcp__plugin_plaiiin-workflows_workflows__*`) — listing and reading tickets, creating one, moving it between states, patching fields, commenting, editing a type's fields, or syncing a signed workspace. Covers that the app must be running, that every tool takes the tracking folder as `workflow_root`, which tools change the repository and which only move the app's selection, and why ticket files are never edited by hand in a signed workspace. With no checkout or no app — only a server URL and a key — use `workflows-server` instead.
 ---
 
-# Working tickets through the Workflows app
+# Working tickets through the Workflow app
 
-The Workflows app for Mac keeps tickets as files in a git repository and exposes an MCP server on
+The Workflow app for Mac keeps tickets as files in a git repository and exposes an MCP server on
 `http://127.0.0.1:27184/mcp` while it is running. This plugin registers it as the `workflows`
 server. Everything you do through it is done **by the app**, as the person at this Mac — and in a
 workspace with integrity on, signed with this Mac's device key.
@@ -13,7 +13,7 @@ workspace with integrity on, signed with this Mac's device key.
 ## Before anything else
 
 - **The app must be running.** A connection error means it is closed, not that the tools do not
-  exist. Ask the person to open Workflows (or `open -a Workflows`) and try again.
+  exist. Ask the person to open Workflow (or `open -a Workflow`) and try again.
 - **`describe_app_state`** orients you: open windows, the focused one, recent folders.
 - **`list_projects`** names the folders the app knows. Most tools take one as **`workflow_root`**:
   the absolute path of the tracking folder (the one holding the `<type>.workflow` folders), not
@@ -69,7 +69,7 @@ admin has approved it. Until then it is listed as pending (`integrity_status`).
 change nothing in the repository. `get_selection` reads back what is selected — useful when the
 person says "this one".
 
-`take_screenshot` renders a Workflows window to a PNG from inside the app. It is a picture of the
+`take_screenshot` renders a Workflow window to a PNG from inside the app. It is a picture of the
 app's own window, good for checking a layout; it is not a screen capture.
 
 ## Signed workspaces

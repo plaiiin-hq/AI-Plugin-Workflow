@@ -1,12 +1,12 @@
-# plaiiin Workflows for Claude Code
+# plaiiin Workflow for Claude Code
 
-Work with plaiiin Workflows from Claude: tickets, their states and the views over them, kept as
+Work with plaiiin Workflow from Claude: tickets, their states and the views over them, kept as
 files in a git repository.
 
 | Skill | For | Needs |
 |---|---|---|
-| `workflows-app` | a repository checked out on this Mac — read, create, move and comment on tickets through the Workflows app | the Workflows app, running |
-| `workflows-server` | the same tickets from anywhere, over a Workflows server's REST API | the server's URL and an API key |
+| `workflows-app` | a repository checked out on this Mac — read, create, move and comment on tickets through the Workflow app | the Workflow app, running |
+| `workflows-server` | the same tickets from anywhere, over a Workflow server's REST API | the server's URL and an API key |
 
 Both write changes the workspace's history can explain: the app signs with this Mac's device key,
 the server commits in the name of the key's owner. Neither skill edits ticket files by hand.
@@ -30,7 +30,7 @@ codex plugin marketplace add plaiiin-hq/AI-Plugin-Workflow
 codex plugin add plaiiin-workflows@plaiiin-workflows
 ```
 
-Codex uses the same skills and local Workflows MCP endpoint as Claude Code.
+Codex uses the same skills and local Workflow MCP endpoint as Claude Code.
 
 ## What is in here
 

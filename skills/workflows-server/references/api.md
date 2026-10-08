@@ -1,4 +1,4 @@
-# Workflows server — the API
+# Workflow server — the API
 
 Everything is under `/api/`, takes `X-API-Key`, and speaks JSON. `<ws>` is a workspace id from
 `GET /api/workspaces`. Paths under "the workflow surface" are relative to

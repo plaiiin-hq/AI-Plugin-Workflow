@@ -1,18 +1,18 @@
 ---
 name: workflows-server
-description: Use when working with tickets on a plaiiin Workflows SERVER over its REST API — listing what is open, reading a ticket and its history, creating one, moving it to another state, commenting, or reading the progress and board views — from any machine, with no checkout of the repository. Covers X-API-Key auth and where the key lives (~/.plaiiin/workflows/env — read that before asking anyone for one), the /api boundary, the version number every write carries, and why a 404 on a workspace usually means "no access" rather than "no such thing". For a repository checked out on this Mac with the Workflows app running, use `workflows-app` instead.
+description: Use when working with tickets on a plaiiin Workflow SERVER over its REST API — listing what is open, reading a ticket and its history, creating one, moving it to another state, commenting, or reading the progress and board views — from any machine, with no checkout of the repository. Covers X-API-Key auth and where the key lives (~/.plaiiin/workflows/env — read that before asking anyone for one), the /api boundary, the version number every write carries, and why a 404 on a workspace usually means "no access" rather than "no such thing". For a repository checked out on this Mac with the Workflow app running, use `workflows-app` instead.
 ---
 
-# Working a Workflows server
+# Working a Workflow server
 
-A Workflows server serves **workspaces**. A workspace is a folder in a git repository; in it,
+A Workflow server serves **workspaces**. A workspace is a folder in a git repository; in it,
 **types** (Task, Epic, Case …) are folders holding a `template.json` — the fields, the states and
 the moves between them — and **instances** (the tickets) are folders holding a `data.json` and a
 timeline. Every change you make through the server becomes one git commit in that repository,
 made in your name.
 
 Use this skill when you have a server URL and a key. If the repository is checked out on this Mac
-and the Workflows app is running, `workflows-app` does the same work through the app.
+and the Workflow app is running, `workflows-app` does the same work through the app.
 
 ## Access — set once, never asked again
 
