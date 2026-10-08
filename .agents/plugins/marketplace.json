@@ -1,11 +1,11 @@
 {
-  "name": "plaiiin-workflows",
+  "name": "plaiiin-workflow",
   "interface": {
     "displayName": "Plaiiin plugins"
   },
   "plugins": [
     {
-      "name": "plaiiin-workflows",
+      "name": "plaiiin-workflow",
       "source": {
         "source": "local",
         "path": "./"

@@ -1,6 +1,6 @@
 ---
-name: workflows-server
-description: Use when working with tickets on a plaiiin Workflow SERVER over its REST API — listing what is open, reading a ticket and its history, creating one, moving it to another state, commenting, or reading the progress and board views — from any machine, with no checkout of the repository. Covers X-API-Key auth and where the key lives (~/.plaiiin/workflows/env — read that before asking anyone for one), the /api boundary, the version number every write carries, and why a 404 on a workspace usually means "no access" rather than "no such thing". For a repository checked out on this Mac with the Workflow app running, use `workflows-app` instead.
+name: workflow-server
+description: Use when working with tickets on a plaiiin Workflow SERVER over its REST API — listing what is open, reading a ticket and its history, creating one, moving it to another state, commenting, or reading the progress and board views — from any machine, with no checkout of the repository. Covers X-API-Key auth and where the key lives (~/.plaiiin/workflow/env — read that before asking anyone for one), the /api boundary, the version number every write carries, and why a 404 on a workspace usually means "no access" rather than "no such thing". For a repository checked out on this Mac with the Workflow app running, use `workflow-app` instead.
 ---
 
 # Working a Workflow server
@@ -12,15 +12,15 @@ timeline. Every change you make through the server becomes one git commit in tha
 made in your name.
 
 Use this skill when you have a server URL and a key. If the repository is checked out on this Mac
-and the Workflow app is running, `workflows-app` does the same work through the app.
+and the Workflow app is running, `workflow-app` does the same work through the app.
 
 ## Access — set once, never asked again
 
-The key and the server live in `~/.plaiiin/workflows/env`, two lines:
+The key and the server live in `~/.plaiiin/workflow/env`, two lines:
 
 ```
-WORKFLOWS_URL=https://work.example.com
-WORKFLOWS_API_KEY=twk_…
+WORKFLOW_URL=https://work.example.com
+WORKFLOW_API_KEY=twk_…
 ```
 
 Keep the folder `700` and the file `600`. Variables of the same name already in the environment
@@ -44,7 +44,7 @@ narrower key. So treat it as the person: do not paste it into a ticket, a commit
 ```
 
 The body goes to stdout, `HTTP <code>` to stderr, and the exit code is 0 only for a 2xx. Plain
-`curl -H "X-API-Key: $WORKFLOWS_API_KEY"` works the same.
+`curl -H "X-API-Key: $WORKFLOW_API_KEY"` works the same.
 
 ⚠️ **Only `/api/…` is the API.** Any other path is the web app and answers `200` with a page —
 which looks like success and is not. `wf` refuses such a path.

@@ -1,12 +1,12 @@
 ---
-name: workflows-app
-description: Use when working with plaiiin Workflow tickets in a repository checked out on THIS Mac, through the Workflow app's local MCP server (tools named `mcp__workflows__*` or `mcp__plugin_plaiiin-workflows_workflows__*`) — listing and reading tickets, creating one, moving it between states, patching fields, commenting, editing a type's fields, or syncing a signed workspace. Covers that the app must be running, that every tool takes the tracking folder as `workflow_root`, which tools change the repository and which only move the app's selection, and why ticket files are never edited by hand in a signed workspace. With no checkout or no app — only a server URL and a key — use `workflows-server` instead.
+name: workflow-app
+description: Use when working with plaiiin Workflow tickets in a repository checked out on THIS Mac, through the Workflow app's local MCP server (tools named `mcp__workflow__*` or `mcp__plugin_plaiiin-workflow_workflow__*`) — listing and reading tickets, creating one, moving it between states, patching fields, commenting, editing a type's fields, or syncing a signed workspace. Covers that the app must be running, that every tool takes the tracking folder as `workflow_root`, which tools change the repository and which only move the app's selection, and why ticket files are never edited by hand in a signed workspace. With no checkout or no app — only a server URL and a key — use `workflow-server` instead.
 ---
 
 # Working tickets through the Workflow app
 
 The Workflow app for Mac keeps tickets as files in a git repository and exposes an MCP server on
-`http://127.0.0.1:27184/mcp` while it is running. This plugin registers it as the `workflows`
+`http://127.0.0.1:27184/mcp` while it is running. This plugin registers it as the `workflow`
 server. Everything you do through it is done **by the app**, as the person at this Mac — and in a
 workspace with integrity on, signed with this Mac's device key.
 
@@ -97,5 +97,5 @@ a violation. `sync_workspace` is the way to bring it up to date.
 | Situation | Use |
 |---|---|
 | The repository is checked out here and the app is running | this skill — changes are signed by this Mac |
-| No checkout, another machine, or a scheduled job | `workflows-server` — a URL and an API key |
+| No checkout, another machine, or a scheduled job | `workflow-server` — a URL and an API key |
 | Both are possible | prefer the app for work in the checkout you are already editing; `sync_workspace` afterwards so the server sees it |

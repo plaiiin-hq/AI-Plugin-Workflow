@@ -18,9 +18,9 @@ a dialog — confirm it once for the repository root and every tracking folder b
 2. Put it where the skill reads it:
 
    ```bash
-   mkdir -p ~/.plaiiin/workflows && chmod 700 ~/.plaiiin/workflows
-   printf 'WORKFLOWS_URL=%s\nWORKFLOWS_API_KEY=%s\n' 'https://work.example.com' 'twk_…' > ~/.plaiiin/workflows/env
-   chmod 600 ~/.plaiiin/workflows/env
+   mkdir -p ~/.plaiiin/workflow && chmod 700 ~/.plaiiin/workflow
+   printf 'WORKFLOW_URL=%s\nWORKFLOWS_API_KEY=%s\n' 'https://work.example.com' 'twk_…' > ~/.plaiiin/workflow/env
+   chmod 600 ~/.plaiiin/workflow/env
    ```
 
    No trailing slash on the URL.
@@ -28,7 +28,7 @@ a dialog — confirm it once for the repository root and every tracking folder b
 3. Check it: `scripts/wf GET /api/workspaces` lists the workspaces you can open.
 
 For a second server, keep a second file and point at it for one call:
-`WORKFLOWS_ENV=~/.plaiiin/workflows/support.env scripts/wf GET /api/workspaces`.
+`WORKFLOW_ENV=~/.plaiiin/workflow/support.env scripts/wf GET /api/workspaces`.
 
 ### What the key can do
 

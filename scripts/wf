@@ -1,24 +1,31 @@
 #!/bin/sh
-# wf — one call to a Workflows server, as you.
+# wf — one call to a Workflow server, as you.
 #
 #   wf GET  /api/workspaces
 #   wf GET  /api/workspaces/<ws>/workflows/task
 #   wf POST /api/workspaces/<ws>/workflows/task '{"fields":{"title":"…"}}'
 #
-# Reads WORKFLOWS_URL and WORKFLOWS_API_KEY from the environment, else from
-# ~/.plaiiin/workflows/env. Prints the response body; the HTTP status goes to stderr, and the
+# Reads WORKFLOW_URL and WORKFLOW_API_KEY from the environment, else from
+# ~/.plaiiin/workflow/env. The names from before 2026-10-08 (WORKFLOWS_*, ~/.plaiiin/workflows/env)
+# are still read when the new ones are not there. Prints the response body; the HTTP status goes to stderr, and the
 # exit code is 0 only for a 2xx — so a refusal is never mistaken for an answer.
 set -eu
 
-ENV_FILE="${WORKFLOWS_ENV:-$HOME/.plaiiin/workflows/env}"
-if [ -z "${WORKFLOWS_URL:-}" ] || [ -z "${WORKFLOWS_API_KEY:-}" ]; then
+ENV_FILE="${WORKFLOW_ENV:-${WORKFLOWS_ENV:-$HOME/.plaiiin/workflow/env}}"
+[ -f "$ENV_FILE" ] || [ -n "${WORKFLOW_ENV:-}${WORKFLOWS_ENV:-}" ] || [ ! -f "$HOME/.plaiiin/workflows/env" ] \
+  || ENV_FILE="$HOME/.plaiiin/workflows/env"
+WORKFLOW_URL="${WORKFLOW_URL:-${WORKFLOWS_URL:-}}"
+WORKFLOW_API_KEY="${WORKFLOW_API_KEY:-${WORKFLOWS_API_KEY:-}}"
+if [ -z "$WORKFLOW_URL" ] || [ -z "$WORKFLOW_API_KEY" ]; then
   if [ -f "$ENV_FILE" ]; then
     # shellcheck disable=SC1090
     set -a; . "$ENV_FILE"; set +a
+    WORKFLOW_URL="${WORKFLOW_URL:-${WORKFLOWS_URL:-}}"
+    WORKFLOW_API_KEY="${WORKFLOW_API_KEY:-${WORKFLOWS_API_KEY:-}}"
   fi
 fi
-if [ -z "${WORKFLOWS_URL:-}" ] || [ -z "${WORKFLOWS_API_KEY:-}" ]; then
-  echo "wf: no server configured — put WORKFLOWS_URL and WORKFLOWS_API_KEY in $ENV_FILE (see docs/setup.md)" >&2
+if [ -z "$WORKFLOW_URL" ] || [ -z "$WORKFLOW_API_KEY" ]; then
+  echo "wf: no server configured — put WORKFLOW_URL and WORKFLOW_API_KEY in $ENV_FILE (see docs/setup.md)" >&2
   exit 2
 fi
 if [ $# -lt 2 ]; then
@@ -34,11 +41,11 @@ esac
 
 OUT="$(mktemp)"; trap 'rm -f "$OUT"' EXIT
 if [ -n "$BODY" ]; then
-  CODE="$(curl -sS -o "$OUT" -w '%{http_code}' -X "$METHOD" -H "X-API-Key: $WORKFLOWS_API_KEY" \
-    -H 'Content-Type: application/json' --data "$BODY" "${WORKFLOWS_URL%/}$REQUEST_PATH")"
+  CODE="$(curl -sS -o "$OUT" -w '%{http_code}' -X "$METHOD" -H "X-API-Key: $WORKFLOW_API_KEY" \
+    -H 'Content-Type: application/json' --data "$BODY" "${WORKFLOW_URL%/}$REQUEST_PATH")"
 else
-  CODE="$(curl -sS -o "$OUT" -w '%{http_code}' -X "$METHOD" -H "X-API-Key: $WORKFLOWS_API_KEY" \
-    "${WORKFLOWS_URL%/}$REQUEST_PATH")"
+  CODE="$(curl -sS -o "$OUT" -w '%{http_code}' -X "$METHOD" -H "X-API-Key: $WORKFLOW_API_KEY" \
+    "${WORKFLOW_URL%/}$REQUEST_PATH")"
 fi
 cat "$OUT"
 [ -s "$OUT" ] && echo

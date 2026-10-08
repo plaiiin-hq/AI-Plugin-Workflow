@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
-  "name": "plaiiin-workflows",
-  "version": "1.0.0",
+  "name": "plaiiin-workflow",
+  "version": "2.0.0",
   "description": "Work with plaiiin Workflow tickets through the Mac app or a Workflow server.",
   "author": {
     "name": "Plaiiin",
