@@ -33,6 +33,7 @@ Everything is under `/api/`, takes `X-API-Key`, and speaks JSON. `<ws>` is a wor
 | `POST /<type>/<id>/attach` · `DELETE /<type>/<id>/attach/<kind>/<refId>` | attach or detach a reference — `{"kind": "…", "id": "…"}` |
 | `POST /<type>/<id>/fields/<field>/files` · `GET …/files/<name>` · `DELETE …/files/<name>` | files in a file field |
 | `POST /types` · `PUT /types/<type>` | create or replace a type — needs the workspace's types-admin role |
+| `GET /<type>/<id>/watch` · `PUT …/watch` · `DELETE …/watch` | your watch on a ticket (404: not watching) — `{"comments": true, "states": ["done"], "fields": null}`; for `states`/`fields`, `null` is never and `[]` is any |
 
 An instance: `id`, `type`, `state`, `version`, `fields`, `createdBy`, `createdAt`, `updatedAt`.
 A timeline entry says what happened (`created`, `transitioned`, `commented`, …), who did it and when.
@@ -64,3 +65,16 @@ A collection answers `mode` (`list` or `board`), `sections` (one per query: `lab
 | `POST /api/workspaces/<ws>/roles` | change them — each change is your own commit |
 | `GET /api/workspaces/<ws>/integrity` | `enabled`, and when it is: `open` violations, `resolved`, `canResolve` |
 | `POST /api/workspaces/<ws>/integrity/<id>/sign-off` · `…/revert` | accept or undo a violation — trust-file admins only |
+
+## Notifications (yours)
+
+Whoever created or commented on a ticket hears of its comments and moves; a watch adds what it
+picked. Never of your own actions — so changes made with your key notify everyone but you.
+
+| Call | What |
+|---|---|
+| `GET /api/notify/inbox` (`?limit=`, max 200) | `unread`, `items` newest first: `id`, `kind`, `subject`, `text`, `link`, `read` |
+| `POST /api/notify/inbox/read` | `{"ids": [n, …]}` or `{"all": true}` |
+| `GET /api/notify/preferences` · `PUT …` | per kind (`involved`, `watched`): `timing` (`INSTANT`, `DAILY`, `WEEKLY`, `OFF`) and `channels` (`mail`, `inbox`) on or off; `digestAt`, `digestDay`, `zone`. A PUT changes only what it names |
+| `POST /api/notify/test` | one test mail to you, at most one a minute |
+
