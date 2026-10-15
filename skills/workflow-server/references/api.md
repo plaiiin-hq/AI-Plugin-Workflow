@@ -22,6 +22,7 @@ Everything is under `/api/`, takes `X-API-Key`, and speaks JSON. `<ws>` is a wor
 | `GET /types` | the types: `id`, `name`, `icon` |
 | `GET /types/<type>` | one type in full: `fields`, `nodes`, `edges` |
 | `GET /field-types` | the field types the workspace knows |
+| `GET /people` (`?q=`) | the people a user field may name — everyone with access to the workspace: `id` (the address a field stores), `name`, `initials`, `roles`; you first |
 | `GET /<type>` (`?state=`, `?archived=true`) | instances of a type |
 | `GET /<type>/<id>` | `{ instance, timeline, trail }` |
 | `POST /<type>` | create — `{"fields": {…}}`, optional `"id"` |
@@ -36,6 +37,8 @@ Everything is under `/api/`, takes `X-API-Key`, and speaks JSON. `<ws>` is a wor
 | `GET /<type>/<id>/watch` · `PUT …/watch` · `DELETE …/watch` | your watch on a ticket (404: not watching) — `{"comments": true, "states": ["done"], "fields": null}`; for `states`/`fields`, `null` is never and `[]` is any |
 
 An instance: `id`, `type`, `state`, `version`, `fields`, `createdBy`, `createdAt`, `updatedAt`.
+
+**User fields** (type `user`): a field holds a person by their address — `"assignee": "alex@plaiiin.com"` — or, when its `format.multiple` is true, a list of them. Write any user field by its name, as you do every field; the server refuses a stranger (`422 unknown_user`) and someone outside the field's `format.limitTo` (`user_not_allowed`), and a field with `format.from` (`creator`, `lastChangedBy`) is the system's to fill (`403 field_not_editable`). `null` is "no one". A step's `assign` may put the mover into a field: creating a task may make you its assignee, and the move's event says so under `assigned`. Which field "mine" means is the one with `format.mine`.
 A timeline entry says what happened (`created`, `transitioned`, `commented`, …), who did it and when.
 
 ## Views

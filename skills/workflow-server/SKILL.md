@@ -59,6 +59,7 @@ which looks like success and is not. `wf` refuses such a path.
 | What are a type's fields, states and moves? | `GET /api/workspaces/<ws>/workflows/types/<type>` → `fields`, `nodes` (states), `edges` (moves: `from`, `to`) |
 | The tickets of a type | `GET /api/workspaces/<ws>/workflows/<type>` — add `?state=<id>` to narrow, `?archived=true` for archived ones |
 | Where is ticket X, or is there one about Y? | `GET /api/search?q=WF-12` or `?q=words+of+the+title` — every workspace at once. Search before filing, so the same thing is not filed twice |
+| What is assigned to me, or to no one? | `GET /api/search?q=assignee=me`, `?q=assignee=empty`, `?q=assignee=martin@plaiiin.com` — a `<field>=<value>` word filters on that field (`me`, `empty`, an address), the other words search as before; use the type's own field name |
 | One ticket with its history | `GET /api/workspaces/<ws>/workflows/<type>/<id>` → `{ instance, timeline, trail }` |
 | What does the project's architecture say? | `GET /api/workspaces/<ws>/docs` → each document's `path` and `title`; `GET …/docs/content?path=<path>` → its `markdown`. Read it before proposing a design that a document already settles |
 
@@ -110,7 +111,10 @@ Before a write:
    do not just retry with the new number.
 3. **A checklist field** (`format.display: "checklist"`, e.g. a task's `checklist` and `dod`) holds items `{id, description, done, commit?}`. Add and tick items one at a time with the checklist calls, so nobody overwrites another's items.
 4. **Write values the way the type stores them:** a choice is its option's `id`; a link to another
-   ticket (a task's `epic`) is that ticket's `id`; "several of a set" is a list of option ids.
+   ticket (a task's `epic`) is that ticket's `id`; "several of a set" is a list of option ids; a
+   person (a `user` field — `assignee`, `reviewer`, whatever the type calls it) is their address,
+   from `GET …/people`, or a list of addresses when the field takes several. Work is assigned by
+   writing that field, not by a line in the description.
 
 ## Reading a refusal
 
