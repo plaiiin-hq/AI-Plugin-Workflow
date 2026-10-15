@@ -64,7 +64,7 @@ A collection answers `mode` (`list` or `board`), `sections` (one per query: `lab
 
 | Call | What |
 |---|---|
-| `GET /api/workspaces/<ws>/roles` | people, groups, who may grant what, and what you may grant |
+| `GET /api/workspaces/<ws>/roles` | `access`: **everyone** who can open the workspace — `id`, `name`, `roles`, and `via`, where each way in comes from (`file` = this workspace's users.json; `grant` with the workspace it names and its `level` — this workspace, or a shared one such as `work`; `role` = a workspace role; `admin` = the server's admin role). `people`, `groups`, `grants` are **only** what the workspace's own users.json holds — on a server where access is given through realm roles they are empty for every workspace, which means "no workspace-specific roles", never "nobody". Then the known `roles` and what you (`me`) may grant |
 | `POST /api/workspaces/<ws>/roles` | change them — each change is your own commit |
 | `GET /api/workspaces/<ws>/integrity` | `enabled`, and when it is: `open` violations, `resolved`, `canResolve` |
 | `POST /api/workspaces/<ws>/integrity/<id>/sign-off` · `…/revert` | accept or undo a violation — trust-file admins only |
