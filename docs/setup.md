@@ -4,8 +4,8 @@ The plugin has two halves. Use either or both.
 
 ## The Workflow app on this Mac
 
-Nothing to configure: the plugin registers the app's local MCP server
-(`http://127.0.0.1:27184/mcp`). It answers while the app is running. Open Workflow, then ask
+Nothing to configure: the plugin registers the app's local MCP server through its Unix socket.
+It answers while the app is running. Open Workflow, then ask
 Claude to `describe_app_state`.
 
 The app only uses folders it was granted. The first time Claude adds a repository, the app shows

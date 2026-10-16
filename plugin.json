@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "plaiiin-workflow",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Work with plaiiin Workflow tickets through the Mac app or a Workflow server.",
   "author": {
     "name": "Plaiiin",
@@ -10,5 +10,19 @@
   "homepage": "https://github.com/plaiiin-hq/AI-Plugin-Workflow",
   "repository": "https://github.com/plaiiin-hq/AI-Plugin-Workflow",
   "license": "Apache-2.0",
-  "keywords": ["tickets", "workflows", "project-management"]
+  "keywords": ["tickets", "workflows", "project-management"],
+  "extensions": {
+    "com.openai": {
+      "onboardingSkill": "./skills/setup/SKILL.md",
+      "interface": {
+        "displayName": "plaiiin Workflow",
+        "shortDescription": "Read and change Workflow tickets",
+        "longDescription": "Work with tickets through the local Workflow app or a Workflow server with an API key.",
+        "developerName": "Plaiiin",
+        "category": "Productivity",
+        "capabilities": ["Read", "Write"],
+        "websiteURL": "https://github.com/plaiiin-hq/AI-Plugin-Workflow"
+      }
+    }
+  }
 }

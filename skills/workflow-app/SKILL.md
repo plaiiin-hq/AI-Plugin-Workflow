@@ -6,7 +6,7 @@ description: Use when working with plaiiin Workflow tickets in a repository chec
 # Working tickets through the Workflow app
 
 The Workflow app for Mac keeps tickets as files in a git repository and exposes an MCP server on
-`http://127.0.0.1:27184/mcp` while it is running. This plugin registers it as the `workflow`
+the Workflow app's Unix socket while it is running. This plugin registers it as the `workflow`
 server. Everything you do through it is done **by the app**, as the person at this Mac — and in a
 workspace with integrity on, signed with this Mac's device key.
 
