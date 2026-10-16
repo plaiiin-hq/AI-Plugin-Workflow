@@ -29,7 +29,7 @@ workspace with integrity on, signed with this Mac's device key.
 
 | Want | Tool |
 |---|---|
-| The types in a workspace | `list_types` |
+| The types in a workspace | `list_types` — its `failed` lists a type whose template does not load, with why; a type missing from `types` is there, not gone |
 | A type's fields, states and moves | `get_type` — read this before writing; do not guess field names or state ids |
 | Tickets of a type (by state, archived or not) | `list_instances` |
 | One ticket with its history | `get_instance` |
