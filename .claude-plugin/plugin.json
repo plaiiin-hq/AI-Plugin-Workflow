@@ -7,8 +7,9 @@
   "license": "Apache-2.0",
   "mcpServers": {
     "workflow": {
-      "type": "http",
-      "url": "http://127.0.0.1:27184/mcp"
+      "type": "stdio",
+      "command": "/usr/bin/nc",
+      "args": ["-U", "${HOME}/Library/Group Containers/LA8GX8Y3R9.group.plaiiin/run/workflow-mcp.sock"]
     }
   }
 }
