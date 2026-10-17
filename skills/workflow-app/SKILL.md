@@ -84,6 +84,15 @@ device or by its server, and the app audits the history. Then:
 | `sync_workspace` | fetch, fast-forward or a signed merge, push — never a rebase — then re-audit |
 | `resolve_violation` | sign off or revert an open violation, as this Mac's person |
 
+## The app's own settings and keys
+
+What the person can configure in Settings, an agent can read and set (per person, in the app, never in a workspace):
+
+| Tool | Does |
+|---|---|
+| `list_settings` / `set_setting` / `reset_setting` | the app's preferences by key (`board.title_lines`, `commits.idle.seconds`, …) with type, range or options, default; a value that does not fit is refused and says what does. `trust.use_icloud` is the person's, not writable |
+| `list_shortcuts` / `set_shortcut` / `clear_shortcut` / `reset_shortcut` | the key of each command (Search, Save, Sync Now, Open Workspace, …); `set_shortcut` takes `key` + `command`/`shift`/`option`/`control`, or `double_tap` (`command`, `option`, `control`, `shift`); refused with the reason when macOS or another command has it, accepted with a `warning` for known clashes. Search is double Shift by default |
+
 🚨 **Never edit ticket files by hand in a signed workspace**, and never commit them with plain
 `git`. A change the app or the server did not make is one history cannot explain: it is flagged
 as a violation and somebody has to sign it off or revert it. Use the tools above; they write the
