@@ -103,13 +103,14 @@ What the person can configure in Settings, an agent can read and set (per person
 
 | Tool | Does |
 |---|---|
-| `list_my_work` | what is assigned to the caller (or `actor`) in one workspace root, all types; reads a field named `assignee` as one address — to become template-driven (WF-143) |
-| `search_instances` | free text over ids, text fields and type names; no field or state filters yet (WF-144) |
+| `query_instances` | **the one to use for "who works on what" and "what is unassigned in a state"**: filters `states` / `open`, `type_id`, `created_since` / `changed_since`, and `where: [{field, op, value}]` on any field by the name `get_type` shows (`eq` `ne` `in` `empty` `any`; value `me` = the caller); `group_by` a field, `state` or `type` for counts (`(empty)` is its own group); compact rows with `total`, `limit` / `offset`; no `workflow_root` = every workspace. A type that does not declare the field is not in that query, and the reply's `person_fields` names each type's person fields. Example: `{open: true, where: [{field: "<person field>", op: "empty"}], group_by: "state"}` |
+| `list_my_work` | what is not finished and has the caller (or `actor`) in a person field, compact rows; person fields are found by their type, not their name; the caller is the signer of a trust workspace |
+| `search_instances` | free text over ids, text fields and type names; for field filters and counts use `query_instances` |
 | `get_timeline` | one instance's audit trail — created, moved, changed, commented — optionally one `kind` |
 | `get_actor` | who writes are signed and attributed as, and where that came from |
 | `list_pinned_instances` · `pin_instance` · `unpin_instance` | the instances pinned in the app |
 
-For "who works on what" or "what is unassigned in a state" across projects, use the server skill's list endpoints until a generic query tool exists (WF-144).
+For "who works on what" or "what is unassigned in a state" across projects, ask `query_instances` — one call.
 
 🚨 **Never edit ticket files by hand in a signed workspace**, and never commit them with plain
 `git`. A change the app or the server did not make is one history cannot explain: it is flagged
