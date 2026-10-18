@@ -93,6 +93,20 @@ What the person can configure in Settings, an agent can read and set (per person
 | `list_settings` / `set_setting` / `reset_setting` | the app's preferences by key (`board.title_lines`, `commits.idle.seconds`, …) with type, range or options, default; a value that does not fit is refused and says what does. `trust.use_icloud` is the person's, not writable |
 | `list_shortcuts` / `set_shortcut` / `clear_shortcut` / `reset_shortcut` | the key of each command (Search, Save, Sync Now, Open Workspace, …); `set_shortcut` takes `key` + `command`/`shift`/`option`/`control`, or `double_tap` (`command`, `option`, `control`, `shift`); refused with the reason when macOS or another command has it, accepted with a `warning` for known clashes. Search is double Shift by default |
 
+`set_workspace_icon` gives a workspace an icon (or clears it with an empty `icon`): an image path; kept as a small PNG next to the workspace's `.workspace` file and named in its `icon` key, else in the app's support folder. The workspace is named by `workspace_id` or exactly by `name`.
+
+## Finding work
+
+| Tool | Does |
+|---|---|
+| `list_my_work` | what is assigned to the caller (or `actor`) in one workspace root, all types; reads a field named `assignee` as one address — to become template-driven (WF-143) |
+| `search_instances` | free text over ids, text fields and type names; no field or state filters yet (WF-144) |
+| `get_timeline` | one instance's audit trail — created, moved, changed, commented — optionally one `kind` |
+| `get_actor` | who writes are signed and attributed as, and where that came from |
+| `list_pinned_instances` · `pin_instance` · `unpin_instance` | the instances pinned in the app |
+
+For "who works on what" or "what is unassigned in a state" across projects, use the server skill's list endpoints until a generic query tool exists (WF-144).
+
 🚨 **Never edit ticket files by hand in a signed workspace**, and never commit them with plain
 `git`. A change the app or the server did not make is one history cannot explain: it is flagged
 as a violation and somebody has to sign it off or revert it. Use the tools above; they write the

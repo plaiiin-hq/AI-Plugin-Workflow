@@ -11,7 +11,7 @@ Everything is under `/api/`, takes `X-API-Key`, and speaks JSON. `<ws>` is a wor
 | `GET /api/me` | `email`, `displayName`, `admin` |
 | `GET /api/workspaces` | each workspace: `id`, `name`, `access`, `available`, optional `group`, `icon` |
 | `GET /api/workspaces/<ws>/icon` | the workspace's app icon (PNG), when it has one |
-| `GET /api/search?q=…` | find a ticket by id or by words of its title, across every workspace you may read: each hit has `workspace`, `type`, `id`, `title`, `state`. An exact id first; at most 20 |
+| `GET /api/search?q=…` | find a ticket by id or by words of its title, across every workspace you may read: each hit has `workspace`, `type`, `id`, `title`, `state`. An exact id first; at most 20 (`limit` is ignored, no total). A `<field>=<value>` word filters on that field — `me`, `empty` or an address, by the type's own field name; `state` is not a field, so "unassigned in active" is not one query: list the type (`GET …/workflows/<type>`) per workspace and filter the `fields` yourself, until WF-144 |
 | `GET /api/workspaces/<ws>/docs` | the workspace's documents (architecture, plans, notes): `path` from its root and `title`. Read one with `GET …/docs/content?path=<path>` → `markdown`. Read only |
 | `GET /api/me/keys` · `POST /api/me/keys` · `DELETE /api/me/keys/<id>` | your API keys — **signed in only; a key gets `403`** |
 
@@ -33,7 +33,7 @@ Everything is under `/api/`, takes `X-API-Key`, and speaks JSON. `<ws>` is a wor
 | `DELETE /<type>/<id>` · `POST /<type>/<id>/unarchive` | archive · restore |
 | `POST /<type>/<id>/attach` · `DELETE /<type>/<id>/attach/<kind>/<refId>` | attach or detach a reference — `{"kind": "…", "id": "…"}` |
 | `POST /<type>/<id>/fields/<field>/files` · `GET …/files/<name>` · `DELETE …/files/<name>` | files in a file field |
-| `POST /types` · `PUT /types/<type>` | create or replace a type — needs the workspace's types-admin role |
+| `POST /types` · `PUT /types/<type>` | create or replace a type — needs the workspace's types-admin role. `PUT` takes the whole type: `GET` it, change `fields`, send it back. It is a signed, approved rule change; the server commits `<type>: template updated` and the type reads back within seconds, not at once (2026-10-18: `assignee` was added to every project's `task` this way) |
 | `GET /<type>/<id>/watch` · `PUT …/watch` · `DELETE …/watch` | your watch on a ticket (404: not watching) — `{"comments": true, "states": ["done"], "fields": null}`; for `states`/`fields`, `null` is never and `[]` is any |
 
 An instance: `id`, `type`, `state`, `version`, `fields`, `createdBy`, `createdAt`, `updatedAt`.
