@@ -61,7 +61,7 @@ class OpenAIPackageTests(unittest.TestCase):
             (ROOT / ".codex-plugin/plugin.json").read_text()
         )
 
-        self.assertEqual(portable["version"], "2.0.6")
+        self.assertEqual(portable["version"], "2.0.7")
         self.assertEqual(compatibility["version"], portable["version"])
 
 
