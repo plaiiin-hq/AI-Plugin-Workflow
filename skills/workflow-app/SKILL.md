@@ -81,8 +81,19 @@ device or by its server, and the app audits the history. Then:
 |---|---|
 | `integrity_status` | who this Mac signs as, whether its key is enrolled, open violations, pending rule changes |
 | `enrol_device` | starts enrolling this Mac: returns a link the **person** opens and confirms, signed in |
-| `sync_workspace` | fetch, fast-forward or a signed merge, push — never a rebase — then re-audit |
+| `sync_workspace` | fetch, fast-forward or a signed merge, push — never a rebase — then re-audit. A workspace no window has open is opened for the call (the enrolment is checked as usual), so no click is needed |
 | `resolve_violation` | sign off or revert an open violation, as this Mac's person |
+
+## Git accounts
+
+The accounts the app syncs and clones with over HTTPS (GitHub, Bitbucket, GitLab, a server of one's own). You can see them and choose
+which one a host uses; signing in and out stays with the person (Project Settings ▸ Git & Sync). A token never passes through
+you or the MCP.
+
+| Tool | Does |
+|---|---|
+| `git_accounts` | per host: the kind, each account and which is the default; whether the app offers the browser sign-in. No token |
+| `set_default_git_account` | makes one account the default for its host — the one sync and clone use. Needed when a host answers **404 for a private repository**: that is the wrong account being used (e.g. a personal account that is not in the organisation), not a missing repository |
 
 ## The app's own settings and keys
 

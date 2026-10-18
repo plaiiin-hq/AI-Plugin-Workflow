@@ -61,7 +61,7 @@ class OpenAIPackageTests(unittest.TestCase):
             (ROOT / ".codex-plugin/plugin.json").read_text()
         )
 
-        self.assertEqual(portable["version"], "2.0.9")
+        self.assertEqual(portable["version"], "2.0.10")
         self.assertEqual(compatibility["version"], portable["version"])
 
 
@@ -78,6 +78,12 @@ class OpenAIPackageTests(unittest.TestCase):
         app = (ROOT / "skills" / "workflow-app" / "SKILL.md").read_text()
         for word in ("get_card", "set_card", "collection_id", "footerSpans"):
             self.assertIn(word, app)
+
+
+    def test_app_skill_names_the_git_account_tools_and_the_windowless_sync(self):
+        skill = (ROOT / "skills" / "workflow-app" / "SKILL.md").read_text()
+        for needle in ("git_accounts", "set_default_git_account", "no window has open", "404 for a private repository"):
+            self.assertIn(needle, skill)
 
 
 if __name__ == "__main__":
