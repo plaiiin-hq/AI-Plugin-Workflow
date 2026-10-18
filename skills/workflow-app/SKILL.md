@@ -87,7 +87,7 @@ device or by its server, and the app audits the history. Then:
 ## Git accounts
 
 The accounts the app syncs and clones with over HTTPS (GitHub, Bitbucket, GitLab, a server of one's own). You can see them and choose
-which one a host uses; signing in and out stays with the person (Project Settings ▸ Git & Sync). A token never passes through
+which one a host uses; signing in and out stays with the person (Settings ▸ Git & Accounts, the app-wide window, ⌘,). A token never passes through
 you or the MCP.
 
 | Tool | Does |
