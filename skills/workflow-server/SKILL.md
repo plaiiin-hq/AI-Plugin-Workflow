@@ -110,6 +110,7 @@ Before a write:
 2. **Read the ticket for its `version`**, then write with it. On `409` re-read and decide again;
    do not just retry with the new number.
 3. **A checklist field** (`format.display: "checklist"`, e.g. a task's `checklist` and `dod`) holds items `{id, description, done, commit?}`. Add and tick items one at a time with the checklist calls, so nobody overwrites another's items.
+   **Work a ticket in the open, not at the end.** When you start a ticket (move it to its working state), write its plan as checklist items — the sub-tasks you will actually do, one `add_checklist_item` / checklist call each, for a code ticket typically: branch created and pushed · implementation complete · tests written first and passing · branch build green · review done · docs and skills updated. Tick each item the moment it is true, with the commit that made it so (`check_checklist_item`, `commit`), and add an item when you find new work. The ticket then shows where it is part-way, not only before and after; the definition of done (`dod`) stays the bar for closing, and an item you did not do stays open with a note, never ticked.
 4. **Write values the way the type stores them:** a choice is its option's `id`; a link to another
    ticket (a task's `epic`) is that ticket's `id`; "several of a set" is a list of option ids; a
    person (a `user` field — `assignee`, `reviewer`, whatever the type calls it) is their address,

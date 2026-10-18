@@ -95,6 +95,10 @@ What the person can configure in Settings, an agent can read and set (per person
 
 `set_workspace_icon` gives a workspace an icon (or clears it with an empty `icon`): an image path; kept as a small PNG next to the workspace's `.workspace` file and named in its `icon` key, else in the app's support folder. The workspace is named by `workspace_id` or exactly by `name`.
 
+## Working a ticket
+
+**Work a ticket in the open, not at the end.** When you start a ticket (move it to its working state), write its plan as checklist items — the sub-tasks you will actually do, one `add_checklist_item` / checklist call each, for a code ticket typically: branch created and pushed · implementation complete · tests written first and passing · branch build green · review done · docs and skills updated. Tick each item the moment it is true, with the commit that made it so (`check_checklist_item`, `commit`), and add an item when you find new work. The ticket then shows where it is part-way, not only before and after; the definition of done (`dod`) stays the bar for closing, and an item you did not do stays open with a note, never ticked.
+
 ## Finding work
 
 | Tool | Does |
