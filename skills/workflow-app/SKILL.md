@@ -121,6 +121,10 @@ timeline entry and the signature that make the change legitimate.
 🚨 **Never rebase, amend or force-push** a signed workspace's branch. Rewritten history is itself
 a violation. `sync_workspace` is the way to bring it up to date.
 
+## How a card looks
+
+`get_card` shows how a type's cards are drawn: `declared` (its `<type>.card` files), `effective` (what is drawn: the declared slots, the generated default's for the rest) and `defaults`. `set_card` writes the layout, refusing an unknown widget, a field the type lacks or a widget that needs a field and has none, with every reason. A layout is `{leading, lines, trailing, footer, footerSpans}` of widgets (`icon`, `text`, `id`, `state`, `person`, `progress`, `date`, `chips`, `needs`, `spacer`); `footerSpans` says which outer columns (`leading`, `trailing`) the footer reaches under. A slot a layout leaves out keeps the default; an empty list clears it; `reset: true` removes the file. Pass `collection_id` to read or set a **collection's own** layout for the type instead: it lies over the type's slot by slot. Both write plain tracked files, not rule files; sync afterwards.
+
 ## A link for the person
 
 To make the app show something, use `open_in_app` or `select_instance`. When the person should open a **web** link instead (a message, a ticket comment, someone on another machine), the address of a ticket on the server is `<WORKFLOW_URL>/app/w/<workspace>/workflows/<type>/<id>` — with `/app`; `/w/…` without it is an error page. `<WORKFLOW_URL>` is in `~/.plaiiin/workflow/env`; the workspace id comes from the server's `GET /api/workspaces`. `workflow-server` has the details.

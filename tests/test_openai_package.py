@@ -61,7 +61,7 @@ class OpenAIPackageTests(unittest.TestCase):
             (ROOT / ".codex-plugin/plugin.json").read_text()
         )
 
-        self.assertEqual(portable["version"], "2.0.8")
+        self.assertEqual(portable["version"], "2.0.9")
         self.assertEqual(compatibility["version"], portable["version"])
 
 
@@ -72,6 +72,12 @@ class OpenAIPackageTests(unittest.TestCase):
             self.assertIn("/app/w/<workspace>/workflows/<type>/<id>", text)
         self.assertIn("Never write `<WORKFLOW_URL>/w/", server)
         self.assertIn("/api/…", server)
+
+
+    def test_app_skill_names_the_card_tools_and_the_collection_scope(self):
+        app = (ROOT / "skills" / "workflow-app" / "SKILL.md").read_text()
+        for word in ("get_card", "set_card", "collection_id", "footerSpans"):
+            self.assertIn(word, app)
 
 
 if __name__ == "__main__":
