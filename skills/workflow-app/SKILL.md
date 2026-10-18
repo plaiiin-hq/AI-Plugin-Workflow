@@ -121,6 +121,10 @@ timeline entry and the signature that make the change legitimate.
 🚨 **Never rebase, amend or force-push** a signed workspace's branch. Rewritten history is itself
 a violation. `sync_workspace` is the way to bring it up to date.
 
+## A link for the person
+
+To make the app show something, use `open_in_app` or `select_instance`. When the person should open a **web** link instead (a message, a ticket comment, someone on another machine), the address of a ticket on the server is `<WORKFLOW_URL>/app/w/<workspace>/workflows/<type>/<id>` — with `/app`; `/w/…` without it is an error page. `<WORKFLOW_URL>` is in `~/.plaiiin/workflow/env`; the workspace id comes from the server's `GET /api/workspaces`. `workflow-server` has the details.
+
 ## App or server?
 
 | Situation | Use |

@@ -61,8 +61,17 @@ class OpenAIPackageTests(unittest.TestCase):
             (ROOT / ".codex-plugin/plugin.json").read_text()
         )
 
-        self.assertEqual(portable["version"], "2.0.7")
+        self.assertEqual(portable["version"], "2.0.8")
         self.assertEqual(compatibility["version"], portable["version"])
+
+
+    def test_skills_give_the_address_of_a_ticket_with_app_in_it(self):
+        server = (ROOT / "skills" / "workflow-server" / "SKILL.md").read_text()
+        app = (ROOT / "skills" / "workflow-app" / "SKILL.md").read_text()
+        for text in (server, app):
+            self.assertIn("/app/w/<workspace>/workflows/<type>/<id>", text)
+        self.assertIn("Never write `<WORKFLOW_URL>/w/", server)
+        self.assertIn("/api/…", server)
 
 
 if __name__ == "__main__":

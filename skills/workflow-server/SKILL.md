@@ -49,6 +49,18 @@ The body goes to stdout, `HTTP <code>` to stderr, and the exit code is 0 only fo
 ⚠️ **Only `/api/…` is the API.** Any other path is the web app and answers `200` with a page —
 which looks like success and is not. `wf` refuses such a path.
 
+## Giving the person a link
+
+When you tell someone about a ticket, give them a link that opens it. The web app lives under `/app/`, so the address of a ticket is
+
+```
+<WORKFLOW_URL>/app/w/<workspace>/workflows/<type>/<id>
+```
+
+for example `https://work.example.com/app/w/app-dataservice-macos-tracking/workflows/task/DS-12`. A customer who may only open cases gets `/app/w/<workspace>/cases/<type>/<id>` instead. A view is `<WORKFLOW_URL>/app/w/<workspace>/collections/<collection>` (`board`, `now`, `done`, …). Use the workspace's `id` from `GET /api/workspaces`, not its name.
+
+🚨 Never write `<WORKFLOW_URL>/w/…`: without `/app` the server has no page for it and shows an error, and it deliberately does not forward such a link. And never hand a person an `/api/…` address; those are for calls, not for reading. Take `WORKFLOW_URL` from the env file (see Access); do not guess the host.
+
 ## Finding your way
 
 | Question | Call |
