@@ -25,6 +25,28 @@ workspace with integrity on, signed with this Mac's device key.
   user name and token from its keychain (a dialog asks the person once), ssh through the person's
   granted `~/.ssh`. `status: "needs"` says what the person must do first.
 
+## Adding a project
+
+A **project** is a tracking folder: the one that holds the `<type>.workflow` folders and a
+`.workflows.json` (name, icon, optional `server` / `serverWorkspace`). One repository can hold several
+(e.g. `macOS/tracking` and `iOS/tracking` beside each other). A server that already serves the repository picks up a new root by itself within 5 minutes. `workflow_root` is always that folder,
+never the repository root.
+
+| Starting point | Do |
+|---|---|
+| Repository already on this Mac, tracking folder exists | `add_repo` (`path` = the tracking folder, `workspace` = id or name; a new name creates the workspace). `status: "awaiting_user"` means a folder dialog waits for 1 click — poll `list_projects` |
+| Repository not on this Mac | `clone_repo`, then `add_repo` for the tracking folder inside it if the clone did not add it |
+| Repository on this Mac, **no tracking folder for this project yet** (e.g. a new iOS target) | create the folder and its `.workflows.json` (copy the sibling project's, change `name`, `icon`, and drop `serverWorkspace` until the server has one), `add_repo` it, then `create_type` once per type (copy the sibling's `template.json` via `get_type`). *Not yet tried end to end: if a step is refused, say which, and fix this row* |
+| Folder outside every grant | `grant_folder_access` on the repository root first, so later `add_repo` calls below it need no dialog |
+
+In a repository with `.workflows/trust.json` a new project is inside the trust workspace: call
+`integrity_status` before the first write, and expect each new type to be a **rule change** that waits
+for a trust-file admin.
+
+Check the result with `list_projects` (the folder is listed) and `list_types` (the types load, `failed`
+empty). If `add_repo` returns `added` but nothing appears, the folder is probably not a tracking folder:
+look for `.workflows.json` and `*.workflow` directly inside it.
+
 ## Reading
 
 | Want | Tool |
