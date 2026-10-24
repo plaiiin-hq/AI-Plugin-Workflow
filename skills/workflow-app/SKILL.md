@@ -12,6 +12,8 @@ workspace with integrity on, signed with this Mac's device key.
 
 ## Before anything else
 
+- **A tool the app gained after your session started may not be in your tool list.** `/reload-plugins` does not always refresh it (seen with `set_view`, which the app listed over `tools/list`); start a new session. Until then a plain JSON-RPC `tools/call` on the app's socket works.
+
 - **The app must be running.** A connection error means it is closed, not that the tools do not
   exist. Ask the person to open Workflow (or `open -a Workflow`) and try again.
 - **`describe_app_state`** orients you: open windows, the focused one, recent folders.
@@ -42,6 +44,8 @@ never the repository root.
 In a repository with `.workflows/trust.json` a new project is inside the trust workspace: call
 `integrity_status` before the first write, and expect each new type to be a **rule change** that waits
 for a trust-file admin.
+
+A combined "Active projects" tree draws one row per active `project` ticket (seen when Agent Voice was added: it showed only after its `project` ticket was filed), so file the new project's `project` ticket too.
 
 Check the result with `list_projects` (the folder is listed) and `list_types` (the types load, `failed`
 empty). If `add_repo` returns `added` but nothing appears, the folder is probably not a tracking folder:
