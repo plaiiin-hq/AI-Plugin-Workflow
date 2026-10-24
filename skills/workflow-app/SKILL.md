@@ -154,6 +154,10 @@ timeline entry and the signature that make the change legitimate.
 🚨 **Never rebase, amend or force-push** a signed workspace's branch. Rewritten history is itself
 a violation. `sync_workspace` is the way to bring it up to date.
 
+## Views (boards, lists, progress trees)
+
+`set_view` creates or replaces a `<id>.collection` (`kind: "collection"`) or `<id>.tree` (`kind: "tree"`) in a tracking root: `workflow_root`, `kind`, `id`, `definition` (the file's JSON). It is refused, with the reason and nothing written, when the JSON does not read as that kind of view. Use it instead of writing the file yourself: in a signed workspace the app makes the call one commit signed by this Mac, and a hand-written view file would stay uncommitted. Copy the shape from a sibling project's views.
+
 ## How a card looks
 
 `get_card` shows how a type's cards are drawn: `declared` (its `<type>.card` files), `effective` (what is drawn: the declared slots, the generated default's for the rest) and `defaults`. `set_card` writes the layout, refusing an unknown widget, a field the type lacks or a widget that needs a field and has none, with every reason. A layout is `{leading, lines, trailing, footer, footerSpans}` of widgets (`icon`, `text`, `id`, `state`, `person`, `progress`, `date`, `chips`, `needs`, `spacer`); `footerSpans` says which outer columns (`leading`, `trailing`) the footer reaches under. A slot a layout leaves out keeps the default; an empty list clears it; `reset: true` removes the file. Pass `collection_id` to read or set a **collection's own** layout for the type instead: it lies over the type's slot by slot. Both write plain tracked files, not rule files; sync afterwards.
